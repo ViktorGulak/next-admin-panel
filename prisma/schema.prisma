@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
@@ -12,4 +6,42 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+/* 
+prisma db push - синхронизирует схему Prisma с БД без истории миграций.
+npx prisma migrate dev --name init --create-only - 
+Создает SQL-миграции в dev режиме и с именем init, --create-only - говорит
+только создать миграцию, но не применять её к бд (если вдруг нужны правки в sql код)
+Для применения к бд вызвать npx prisma migrate dev. 
+npx prisma generate - генерирует Prisma Client для взаимодействияс бд из кода
+Создает Prisma Client, Обновляет типы TypeScript Запускается автоматически при
+prisma migrate dev или prisma db push, но если
+вручную редактируем schema.prisma (без миграций), 
+нужно запустить generate отдельно.
+*/
+
+model Branch{
+  id      Int      @id @default(autoincrement())
+  title   String   @db.VarChar(250)
+  addres  String   @db.VarChar(250)
+  city    String   @db.VarChar(50)
+  clients Client[]
+
+}
+
+model Client {
+  id            Int      @id @default(autoincrement())
+  phone         String   @db.VarChar(15) @unique
+  email         String   @db.VarChar(250) @unique
+  personalCode  String   @db.VarChar(15) @unique
+  addres        String   @db.VarChar(250)
+  branchId      Int      
+  branch        Branch   @relation(fields: [branchId], references: [id])
+}
+
+
+enum Role {
+  USER
+  ADMIN
+  SUPERVISOR
 }
