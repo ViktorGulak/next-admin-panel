@@ -1,0 +1,133 @@
+@use "../../../style/variable" as colVars;
+@use '../../../style/mixins' as mixin;
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text&family=Lato&family=Tilt+Prism&display=swap');
+
+
+.receipt_form_wrapper{
+    background-color: #f2f2f2;
+    box-shadow: -2px 1px 2px rgba(0,0,0,0.15), 
+    2px 1px 2px rgba(0,0,0,0.15);
+    padding: 35px;
+    border-radius: 10px;
+    .receipt_title{
+       
+        color: colVars.$appTitle;
+        font-family: 'Lato', sans-serif;
+        font-size: 1.5rem;
+            &::before{
+                content: "▏";
+                color: rgb(238, 0, 0);
+                font-size: 30px;  
+            }
+    }
+
+    &>form{
+
+        & .client_record{
+            display: block;
+            font-size: 0.9rem;
+            font-family: 'Golos Text', sans-serif;
+            color: colVars.$grey;
+            
+        }
+
+        & .client_record:not(:first-child){
+            margin-top: 30px;
+            font-size: 0.8rem;
+        }
+
+        & .checkbox_wrapper{
+            display: block;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            font-family: 'Golos Text', sans-serif;
+            color: colVars.$grey;
+        }  
+    }
+}
+
+.custom_form_label{
+    
+    font-size: .8rem;
+    width: fit-content;
+    & > .custom_form_icon{
+        height: 17px;
+        width: 17px;
+        border-color: colVars.$blue !important;;
+    } 
+
+    & input:checked + i{
+        background: colVars.$blue !important;
+        border-color: colVars.$blue !important;
+        box-shadow: 0 0 0 .1rem rgba(3, 169, 235, 0.2) !important;
+    }
+}
+
+.service_list_wrapper{
+
+    font-family: 'Golos Text', sans-serif;
+
+    & > span{
+         font-size: 0.9rem;
+         color: colVars.$grey; 
+         font-weight: bold;
+    }
+
+    &>ul{
+        height: 155px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 0 10px;
+        font-size: 0.7rem;
+        &>li{
+            list-style: none;
+            margin-top: 15px;
+            border: 1px solid colVars.$grey;
+            color: #e62121;
+            padding: 5px;
+
+            &>span{
+                color: #e62121;
+                margin-left: 10px;
+                font-size: 0.7rem;
+            }
+        }    
+    }    
+} 
+    
+.receipt_form_divider{
+    border-top-color: colVars.$dividerColor;
+    margin-top: 20px; 
+}
+
+.receipt_form_footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 30px;
+
+    & > span{
+        color: colVars.$blue;
+        font-family: 'Golos Text', sans-serif;
+        font-size: .75rem;
+
+        &::before{
+            content: "*";
+            margin-right: 3px;
+        }
+    }
+
+    & > button{
+        @include mixin.custom_btn;
+    }
+}
+
+.receipt_form_warning{
+    display: block;
+    color: rgb(107, 107, 107);
+    font-family: "Lato", sans-serif;
+    font-size: 0.8em;
+    text-align: end;
+    margin-top: 15px;
+}

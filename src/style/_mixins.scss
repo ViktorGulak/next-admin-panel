@@ -1,0 +1,23 @@
+@use "./variable" as colVars;
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text&family=Lato&family=Tilt+Prism&display=swap');
+
+
+@mixin custom_btn {
+    background-color: colVars.$blue !important;
+    border-color: colVars.$blue !important;
+    color: #fff !important;
+    transition: background-color .3s, border .3s, box-shadow .3s, color .3s;
+    &:hover{
+        background-color: colVars.$darkBlue !important;
+        border-color: colVars.$darkBlue !important;
+    }
+}
+
+@mixin custom_inp{
+    padding: 5px;
+    border-color: colVars.$blue;
+    font-family: 'Golos Text', sans-serif;
+    &:focus{
+       border-color: colVars.$darkBlue; 
+    }
+}

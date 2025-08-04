@@ -1,0 +1,33 @@
+@use '../../style/mixins' as mixin;
+@use "../../style/variable" as colVars;
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text&family=Lato&family=Tilt+Prism&display=swap');
+
+.avatar_wrapper{
+    margin-right: 30px;
+    font-family: 'Golos Text', sans-serif;
+    color: colVars.$blue;
+    font-size: 14px;
+    &>figure{
+        background: inherit;
+    }
+
+    & .exit-link{
+        margin-left: 5px;
+    }
+
+    & a{
+        text-decoration: none;
+        font-size: 14px;
+        box-shadow: none;
+        color: colVars.$blue;
+        transition: 350ms;
+
+            &:hover{
+                color: colVars.$darkBlue;
+            }
+    }
+}
+
+.avatar_popover{
+    width: 275px;
+}

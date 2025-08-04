@@ -1,0 +1,52 @@
+@use "../../../style/variable" as colVars;
+@use '../../../style/mixins' as mixin;
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text&family=Lato&family=Tilt+Prism&display=swap');
+
+
+.auth_form_wrapper{
+    background-color: #f2f2f2;
+    box-shadow: -2px 1px 2px rgba(0,0,0,0.15), 
+    2px 1px 2px rgba(0,0,0,0.15);
+    padding: 35px;
+    align-self: flex-start;
+    margin-top: 100px;
+    border-radius: 10px;
+    .auth_form_title{
+        color: colVars.$appTitle;
+        font-family: 'Lato', sans-serif;
+        font-size: 1.5rem;
+        &::before{
+            content: "▏";
+            color: rgb(238, 0, 0);
+            font-size: 30px;  
+        }
+    }
+
+    &>form{
+
+        & > div{
+            display: flex;
+            flex-direction: column;
+        
+            & > label {
+                color: colVars.$grey;
+                font-size: .9rem;
+                font-family: "Lato", sans-serif;
+                letter-spacing: 1px;
+                margin-top: 10px;
+            }
+
+            & > input{
+                @include mixin.custom_inp;
+            }
+
+            & > button{
+                @include mixin.custom_btn;
+                align-self: flex-end;
+                margin-top: 20px;
+                width: 100px;
+            }
+        }
+    }
+}
