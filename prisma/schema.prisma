@@ -33,18 +33,37 @@ model Branch{
 }
 
 model Client {
+  id              Int      @id @default(autoincrement())
+  surname         String   @db.VarChar(50)
+  name            String   @db.VarChar(50)
+  patronymic      String   @db.VarChar(50)
+  company         String?  @db.VarChar(50) @default("Физ. лицо") 
+  phone           String   @db.VarChar(15) @unique
+  email           String   @db.VarChar(250) @unique
+  personalCode    String   @db.VarChar(15) @unique
+  addres          String   @db.VarChar(250)
+  mailings        Mailing[]
+  signedServices  SignedService[]
+  branchId        Int      
+  branch          Branch   @relation(fields: [branchId], references: [id])
+}
+
+model SignedService{
   id            Int      @id @default(autoincrement())
-  surname       String   @db.VarChar(50)
-  name          String   @db.VarChar(50)
-  patronymic    String   @db.VarChar(50)
-  company       String?  @db.VarChar(50) @default("Физ. лицо") 
-  phone         String   @db.VarChar(15) @unique
-  email         String   @db.VarChar(250) @unique
-  personalCode  String   @db.VarChar(15) @unique
-  addres        String   @db.VarChar(250)
-  mailings      Mailing[]
-  branchId      Int      
-  branch        Branch   @relation(fields: [branchId], references: [id])
+  signedDate    DateTime
+  isPaid        Boolean @default(false)
+  clientId    Int      
+  client      Client      @relation(fields: [clientId], references: [id])
+  services    Service[]
+}
+
+model Service{
+  id              Int           @id @default(autoincrement())
+  service         String        @db.VarChar(250)
+  isPaid          Boolean       @default(false)
+  price           Decimal       @db.Decimal(10, 2) // 10 цифр всего, 2 после запятой
+  signedServiceId Int
+  signedService   SignedService @relation(fields: [signedServiceId], references: [id])
 }
 
 enum Role {
@@ -64,9 +83,49 @@ model Employee     {
   password      String   @db.VarChar(25) @unique
   role          Role     @default(OPERATOR)
   photo         String?  @default("")
+
+  createdTasks  Task[]   @relation("TaskAuthor")    // Задачи, которые сотрудник СОЗДАЛ
+  assignedTasks Task[]   @relation("TaskAssignee")  // Задачи, которые сотрудник ВЫПОЛНЯЕТ
+  announcements Announcement[]
+  notes         Note[]
   mailings      Mailing[]
+
   branchId      Int      
   branch        Branch   @relation(fields: [branchId], references: [id])
+}
+
+model Task {
+  id            Int      @id  @default(autoincrement())
+  task          String?  @default("")
+  creationDate  DateTime @default(now())
+  deadline      DateTime
+  isComplete    Boolean @default(false)
+
+  // Автор задачи (кто создал)
+  author        Employee  @relation("TaskAuthor", fields: [authorId], references: [id])
+  authorId      Int
+  // Исполнитель задачи (кому назначена)
+  assignee      Employee  @relation("TaskAssignee", fields: [assigneeId], references: [id])
+  assigneeId    Int
+}
+
+model Announcement {
+  id            Int      @id  @default(autoincrement())
+  title         String   @db.VarChar(50)
+  record        String
+  creationDate  DateTime @default(now())
+  image         String   @db.VarChar(250)
+  employeeId    Int      
+  employee      Employee   @relation(fields: [employeeId], references: [id])
+}
+
+model Note {
+  id            Int      @id  @default(autoincrement())
+  note          String   
+  creationDate  DateTime @default(now())
+  isComplete    Boolean @default(false)
+  employeeId    Int      
+  employee      Employee   @relation(fields: [employeeId], references: [id])
 }
 
 model Mailing{
