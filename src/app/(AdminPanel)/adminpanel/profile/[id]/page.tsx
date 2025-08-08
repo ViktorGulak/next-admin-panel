@@ -1,11 +1,11 @@
 
 import React from "react";
 import styles from "./page.module.scss";
-const Users = () => {
+const Profile = () => {
   return (
     <div className="">
-          Пользователи 
+           Профиль 
     </div>
   );
 }
-export default Users
+export default Profile
