@@ -15,7 +15,8 @@ async function loginEmployee(formData: FormData) {
 
     if (employee) {
         // Успешная авторизация
-        redirect(`/adminpanel/profile/${employee.id}`) 
+        console.log(employee)
+        redirect(`/adminpanel/profile/${employee.id}`)
     } else {
         // Ошибка авторизации
         console.log("Ошибка авторизации")

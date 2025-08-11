@@ -4,10 +4,10 @@ type SidebarLink = {
   icon: string,
 }
 
-const getSidebarLinks = (): SidebarLink[] => ([
+const getSidebarLinks = (profileId: string): SidebarLink[] => ([
   {
     title: "Профиль",
-    path: "/adminpanel/profile",
+    path: `/adminpanel/profile/${profileId}`,
     icon: "icon icon-people",
   },
   {

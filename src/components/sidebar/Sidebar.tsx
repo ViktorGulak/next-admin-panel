@@ -1,15 +1,22 @@
 'use client'
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import getSidebarLinks from './sidebarData';
 import styles from "./sidebar.module.scss";
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useParams } from 'next/navigation'
+import { useAuthorizedEmployeeStore } from "@/lib/store/authorized-employee-store"
 const Sidebar = () =>{
 
   const [sbActive, setSbActive] = useState(true);
   const path = usePathname();
-  const links = getSidebarLinks();
-  console.log(sbActive)
+  const params = useParams()
+  const { employeeId, setEmployeeId } = useAuthorizedEmployeeStore();
+
+  useEffect(() => {
+    if (params.id) setEmployeeId(params.id as string);
+  }, [params.id]);
+
+  const links = getSidebarLinks(employeeId);
   return (
     <div className={`${styles.sidebar} ${!sbActive ? styles.collapsed : ""}`}>
       <div className={styles.sidebar_header}>

@@ -1,0 +1,32 @@
+@use "../../../style/variable" as colVars;
+@use '../../../style/mixins' as mixin;
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text&family=Lato&family=Tilt+Prism&display=swap');
+
+
+.auth_form{
+
+    & > div{
+        display: flex;
+        flex-direction: column;
+    
+        & > label {
+            color: colVars.$grey;
+            font-size: .9rem;
+            font-family: "Lato", sans-serif;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        & > input{
+            @include mixin.custom_inp;
+        }
+
+        & > button{
+            @include mixin.custom_btn;
+            align-self: flex-end;
+            margin-top: 20px;
+            width: 100px;
+        }
+    }
+}

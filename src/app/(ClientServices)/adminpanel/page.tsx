@@ -1,22 +1,12 @@
 import Form from 'next/form'
 import React from "react";
 import styles from "./page.module.scss";
-import loginEmployee from '@/lib/actions/auth.action';
+import EmployeeAuthForm from "@/components/forms/employee-auth-form/employeeAuthForm"
 const AdminPanelAuth = () => {
   return (
     <div className={styles.auth_form_wrapper}>
         <h3 className={styles.auth_form_title}>Авторизация в панели администратора</h3> 
-        <Form action={loginEmployee}>
-            <div className="form-group">
-                <label className="form-label" htmlFor="input-login">Логин</label>
-                <input name="login" className="form-input" type="text"
-                     id="input-login" placeholder="Ваш логин"/>
-                <label className="form-label" htmlFor="input-password">Пароль</label>
-                <input name="password" className="form-input" type="password" autoComplete='on'
-                    id="input-password" placeholder="Ваш пароль"/>
-                <button className="btn btn-primary" type="submit">Войти</button>   
-            </div>
-        </Form>
+        <EmployeeAuthForm/>
     </div>
 );
 }
