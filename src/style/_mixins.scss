@@ -13,6 +13,14 @@
     }
 }
 
+@mixin custom_link_btn {
+    color: colVars.$blue !important;
+    transition: color .3s;
+    &:hover{
+        color: colVars.$darkBlue !important;
+    }
+}
+
 @mixin custom_inp{
     padding: 5px;
     border-color: colVars.$blue;
