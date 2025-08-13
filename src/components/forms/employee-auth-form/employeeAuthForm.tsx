@@ -24,7 +24,7 @@ const EmployeeAuthForm = () => {
         body: JSON.stringify({ login, password }),
         headers: { 'Content-Type': 'application/json' },
       });
-
+      
       if (response.ok) {
         const {id} = await response.json();
         setEmployeeId(id); // Сохраняем id авторизованного в Zustand
