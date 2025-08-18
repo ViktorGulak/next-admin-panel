@@ -11,16 +11,15 @@ async function loginEmployee(formData: FormData) {
 
     if (!login || !password) return
 
-    const employee = await authService.login(login, password)
+    const authEmployee = await authService.login(login, password)
 
-    if (employee) {
+    if (authEmployee) {
         // Успешная авторизация
-        console.log(employee)
-        redirect(`/adminpanel/profile/${employee.id}`)
+        redirect(`/adminpanel/profile/${authEmployee.employee.id}`)
     } else {
         // Ошибка авторизации
         console.log("Ошибка авторизации")
-        console.log(employee)
+        console.log(authEmployee)
     }
 }
 

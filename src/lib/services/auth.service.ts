@@ -1,6 +1,6 @@
 import prisma from "../db/prisma"
-import {sign} from 'jsonwebtoken';
-import { Role } from '@prisma/client';
+import { SignJWT } from 'jose'
+import { Role } from '@prisma/client'
 
 type Employee = {
   id: number;
@@ -18,7 +18,6 @@ type Employee = {
 }
 class AuthService{
   async login(login: string, password: string) {
-    let jwt: string = "";
     const employee = await prisma.employee.findFirst({
       where: {
         login,
@@ -26,7 +25,7 @@ class AuthService{
       }
     })
     if(employee) {
-      jwt = this.generateJwt(employee);
+      let jwt: string = await this.generateJwt(employee);
       return {employee, jwt}
     }
     else{
@@ -34,12 +33,15 @@ class AuthService{
     }
   }
 
-  generateJwt(data: Omit<Employee, 'password'>) {
-    return sign(
-      data,
-      process.env.JWT_KEY!,
-      { expiresIn: "8h" }
-    );
+  private async generateJwt(employee: Employee) {
+    const { password, ...payload } = employee; // Физически удаляем password
+    const secret = new TextEncoder().encode(process.env.JWT_KEY!);
+    
+    return new SignJWT(payload)
+      .setProtectedHeader({ alg: 'HS256' })
+      .setIssuedAt()
+      .setExpirationTime('8h')
+      .sign(secret);
   }
 }
 
