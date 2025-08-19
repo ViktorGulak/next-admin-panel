@@ -2,7 +2,7 @@
 import React from 'react'
 import styles from "./avatar.module.scss"
 import profileImg from "@/assets/ProfileST.png";
-import Link from 'next/link'
+import logout from "@/lib/actions/logout.action"
 import Image from 'next/image'
 import { useAuthorizedEmployeeStore } from "@/lib/store/authorized-employee-store";
 import { useRouter } from 'next/navigation';
@@ -11,8 +11,10 @@ const Avatar = () => {
   const { clearEmployeeId } = useAuthorizedEmployeeStore();
   const router = useRouter();
 
-  const logoutHandler = () => {
+  const logoutHandler = async () => {
+    await logout();
     clearEmployeeId();
+    router.push("/adminpanel");
   }
   
   return (
@@ -26,9 +28,11 @@ const Avatar = () => {
             <p>IT отдел: 70-53-90</p>
           </div>
           <div className="card-body">
-            <Link href = "/adminpanel" onClick={() => logoutHandler()}> 
+            <button className="btn btn-link"
+              onClick={logoutHandler}
+            >
               Выйти
-            </Link>
+            </button>
           </div>
         </div>
       </div>

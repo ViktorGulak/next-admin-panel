@@ -18,13 +18,8 @@
         }
     }
 
-    & a{
-        text-decoration: none;
-        color: colVars.$blue;
-        transition: 350ms;
-            &:hover{
-                color: colVars.$darkBlue;
-            }
+    & button{
+        @include mixin.custom_link_btn;
     }
 }
 

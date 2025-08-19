@@ -3,9 +3,7 @@ import { authService } from '@/lib/services/auth.service';
 
 export async function POST(request: Request) {
   const { login, password } = await request.json();
-  
   const authEmployee = await authService.login(login, password)
-
   if (!authEmployee) {
     return NextResponse.json(
       { error: 'Неверные данные' },

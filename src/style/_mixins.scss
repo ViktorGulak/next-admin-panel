@@ -19,6 +19,9 @@
     &:hover{
         color: colVars.$darkBlue !important;
     }
+    &:focus{
+        box-shadow: none;
+    }
 }
 
 @mixin custom_inp{
