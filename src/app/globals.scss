@@ -17,6 +17,12 @@ a {
   text-decoration: none;
 }
 
+// Обнулил отступы карт заданные specre.css
+.card .card-body,.card .card-footer,.card .card-header {
+    padding: 0;
+    padding-bottom: 0
+}
+
 .main-container{
   display: flex;
   flex-direction: column;
@@ -43,4 +49,6 @@ a {
   background: linear-gradient(#ebeaea, #c5ceda);
   overflow: hidden;
 }
+
+
 

@@ -1,11 +1,10 @@
 
 import React from "react";
 import styles from "./page.module.scss";
+import UserCard from "@/components/user-card/UserCard"
 const Profile = () => {
   return (
-    <div className="">
-           Профиль 
-    </div>
+    <UserCard/>
   );
 }
 export default Profile

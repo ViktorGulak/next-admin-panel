@@ -1,0 +1,45 @@
+@use '../../style/mixins' as mixin;
+@use "../../style/variable" as colVars;
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text&family=Lato&family=Tilt+Prism&display=swap');
+
+.user_card{
+    min-width: 300px;
+    border-radius: 15px;
+    & img{
+        width: inherit;
+        height: 200px;
+    }
+
+    & ul{
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        margin: 15px 10px;
+        gap: 30px;
+        font-family: 'Lato', sans-serif;
+        font-size: .8rem;
+        &>li{
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+            &>h6{
+                display: inline;
+                font-weight: 600;
+                color: colVars.$blue;
+                letter-spacing: 1px;
+            }
+
+            &>span{
+                color: colVars.$blue;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+.user_card_title{
+    text-align: center;
+    color: colVars.$blue;
+    font-weight: 600;
+    border-bottom: 1px solid colVars.$dividerColor;
+}
