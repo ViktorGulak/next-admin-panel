@@ -23,6 +23,11 @@ a {
     padding-bottom: 0
 }
 
+// Обнулил активные ссылки таб-меню
+.tab .tab-item a.active, .tab .tab-item.active a {
+  border-bottom: none;
+}
+
 .main-container{
   display: flex;
   flex-direction: column;

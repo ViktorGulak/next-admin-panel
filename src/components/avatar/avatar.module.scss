@@ -19,7 +19,7 @@
     }
 
     & button{
-        @include mixin.custom_link_btn;
+        @include mixin.custom_link_btn(colVars.$blue, colVars.$darkBlue);
     }
 }
 

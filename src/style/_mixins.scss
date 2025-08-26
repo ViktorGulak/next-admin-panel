@@ -13,11 +13,11 @@
     }
 }
 
-@mixin custom_link_btn {
-    color: colVars.$blue !important;
+@mixin custom_link_btn($color, $hovColor) {
+    color: $color !important;
     transition: color .3s;
     &:hover{
-        color: colVars.$darkBlue !important;
+        color: $hovColor !important;
     }
     &:focus{
         box-shadow: none;

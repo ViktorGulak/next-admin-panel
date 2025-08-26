@@ -1,8 +1,15 @@
-@use '../../style/mixins' as mixin;
-@use "../../style/variable" as colVars;
+@use '../../../../../style/mixins' as mixin;
+@use "../../../../../style/variable" as colVars;
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
-
+.profile_page_wrapper{
+    width: 100vw;
+    height: 100vh;
+    display: inline-flex;
+    align-items: flex-start;
+    padding: 10px;
+    gap: 50px;
+}
 
 
 
