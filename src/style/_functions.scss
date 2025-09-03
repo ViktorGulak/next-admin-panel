@@ -1,0 +1,3 @@
+@function page-width() {
+  @return calc(100vw - 250px);;
+}

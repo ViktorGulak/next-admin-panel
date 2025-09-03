@@ -1,0 +1,9 @@
+@use '../../../style/mixins' as mixin;
+@use "../../../style/variable" as colVars;
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text&family=Lato&family=Tilt+Prism&display=swap');
+
+.tab_wrapper{
+    display: flex;
+    flex-direction: column;
+}
+

@@ -1,5 +1,5 @@
-@use '../../style/mixins' as mixin;
-@use "../../style/variable" as colVars;
+@use '../../../style/mixins' as mixin;
+@use "../../../style/variable" as colVars;
 @import url('https://fonts.googleapis.com/css2?family=Golos+Text&family=Lato&family=Tilt+Prism&display=swap');
 
 .custom_tab{
@@ -25,6 +25,3 @@
     }
 }
 
-.active{
-    color: #afaff5 !important;
-}
