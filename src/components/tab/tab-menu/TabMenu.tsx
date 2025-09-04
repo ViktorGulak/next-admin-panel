@@ -1,16 +1,18 @@
 'use client'
-import React, {useState} from 'react'
+import React from 'react'
+import {useTabStore} from "@/lib/store/tab-store"
 import styles from "./tabMenu.module.scss"
-import type TabHeader from "@/lib/types/TabHeader"
+import type {TabHeader, Tab} from "@/lib/types/TabMenuTypes"
 
 interface ITabMenuProps{
     headers: TabHeader[]
 }
 const TabMenu = ({headers}: ITabMenuProps) => {
-    const [activeTab, setActiveTab] = useState("notes")
+
+    const {activeTab, setActiveTab} = useTabStore()
     const isActiveTab = (item: string) => item === activeTab
-    const handleTabClick = (tab: string) => setActiveTab(tab)
-    console.log("рендер")
+    const handleTabClick = (tab: Tab) => setActiveTab(tab)
+
   return (
     <ul className={`tab ${styles.custom_tab}`}>
         {   

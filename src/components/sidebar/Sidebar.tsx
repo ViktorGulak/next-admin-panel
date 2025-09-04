@@ -11,7 +11,7 @@ const Sidebar = () =>{
   const path = usePathname();
   const params = useParams()
   const { employeeId, setEmployeeId } = useAuthorizedEmployeeStore();
-  console.log(path)
+
   useEffect(() => {
     if (params.id) setEmployeeId(params.id as string);
   }, [params.id]);

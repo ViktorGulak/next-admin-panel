@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./page.module.scss";
 import UserCard from "@/components/user-card/UserCard"
 import {Tab, TabMenu, TabContent} from "@/components/tab/tabUI"
+import ProfileContentSwitcher from "@/components/profile-content-switcher/ProfileContentSwitcher"
 import getTabHeaders from "./tabMenuData"
 const Profile = () => {
   const tabs = getTabHeaders();
@@ -10,7 +11,9 @@ const Profile = () => {
       <UserCard/>
       <Tab>
         <TabMenu headers = {tabs}/>
-        <TabContent/>
+        <TabContent>
+          <ProfileContentSwitcher/>
+        </TabContent> 
       </Tab>
       
     </div>

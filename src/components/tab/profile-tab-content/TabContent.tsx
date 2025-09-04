@@ -1,12 +1,11 @@
-'use client'
 import React, {useState} from 'react'
 import styles from "./tabContent.module.scss"
 
-const TabContent = () => {
+const TabContent = ({children}: {children: React.ReactNode}) => {
     
   return (
     <div className="tab_content">
-      sdlfks;dlfks;dkf
+      {children}
     </div>
     
   )

@@ -1,4 +1,4 @@
-import type TabHeader from "@/lib/types/TabHeader";
+import type {TabHeader} from "@/lib/types/TabMenuTypes";
 
 const getTabHeaders = (): TabHeader[] => ([
   {
