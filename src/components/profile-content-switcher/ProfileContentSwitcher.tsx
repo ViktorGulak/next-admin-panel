@@ -1,13 +1,14 @@
 'use client'
 import React from "react"
 import {useTabStore} from "@/lib/store/tab-store"
+import NotesList from "@/components/notes-list/NotesList"
 const ProfileContentSwitcher = () => {
     const { activeTab } = useTabStore();
 
-    const renderTabContent = () =>{
+    const renderTabContent = () => {
         switch(activeTab) {
             case "notes":
-                return "Заметки";
+                return <NotesList/>;
             
             case "my-tasks":
                 return "Мои задачи";
@@ -20,7 +21,6 @@ const ProfileContentSwitcher = () => {
                 return _exhaustiveCheck;
         }
     }
-    console.log(activeTab)
     return (
         <>
             {renderTabContent()}
